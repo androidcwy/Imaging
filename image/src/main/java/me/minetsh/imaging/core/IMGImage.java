@@ -779,11 +779,11 @@ public class IMGImage {
         }
     }
 
-    @Override
-    protected void finalize() throws Throwable {
-        super.finalize();
-        if (DEFAULT_IMAGE != null) {
-            DEFAULT_IMAGE.recycle();
-        }
-    }
+//    @Override
+//    protected void finalize() throws Throwable {
+//        super.finalize();
+//        if (DEFAULT_IMAGE != null) {
+//            DEFAULT_IMAGE.recycle();
+//        }
+//    }
 }
