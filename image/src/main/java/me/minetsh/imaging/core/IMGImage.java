@@ -153,7 +153,7 @@ public class IMGImage {
             return;
         }
 
-        release();
+//        release();
         this.mImage = bitmap;
 
         // 清空马赛克图层
