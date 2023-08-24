@@ -241,6 +241,12 @@ public class IMGImage {
         }
     }
 
+    public void clearDoodle(){
+        if (!mDoodles.isEmpty()){
+            mDoodles.clear();
+        }
+    }
+
     public void undoMosaic() {
         if (!mMosaics.isEmpty()) {
             mMosaics.remove(mMosaics.size() - 1);

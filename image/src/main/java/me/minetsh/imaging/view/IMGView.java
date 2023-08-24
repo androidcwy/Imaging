@@ -181,6 +181,13 @@ public class IMGView extends FrameLayout implements Runnable, ScaleGestureDetect
         invalidate();
     }
 
+    public void clearDoodle(){
+        if (!mImage.isDoodleEmpty()){
+            mImage.clearDoodle();
+            invalidate();
+        }
+    }
+
     public boolean isMosaicEmpty() {
         return mImage.isMosaicEmpty();
     }
