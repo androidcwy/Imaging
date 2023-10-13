@@ -295,15 +295,19 @@ public class IMGView extends FrameLayout implements Runnable, ScaleGestureDetect
 
         Canvas canvas = new Canvas(bitmap);
 
-        if (color != 0) {
-            Paint paint = new Paint();
-            paint.setColor(color);
-            canvas.drawRect(0, 0, bitmap.getWidth(), bitmap.getHeight(), paint);
-        }
-
         // 平移到基画布原点&缩放到原尺寸
         canvas.translate(-frame.left, -frame.top);
         canvas.scale(scale, scale, frame.left, frame.top);
+
+        if (color != 0) {
+            canvas.save();
+
+            Paint paint = new Paint();
+            paint.setColor(color);
+            canvas.drawRect(0, 0, bitmap.getWidth(), bitmap.getHeight(), paint);
+
+            canvas.restore();
+        }
 
         onDrawImages(canvas);
 
