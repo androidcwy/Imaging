@@ -271,6 +271,10 @@ public class IMGView extends FrameLayout implements Runnable, ScaleGestureDetect
     }
 
     public Bitmap saveBitmap() {
+        return saveBitmap(0);
+    }
+
+    public Bitmap saveBitmap(int color) {
         mImage.stickAll();
 
         float scale = 1f / mImage.getScale();
@@ -290,6 +294,12 @@ public class IMGView extends FrameLayout implements Runnable, ScaleGestureDetect
                 Math.round(frame.height()), Bitmap.Config.ARGB_8888);
 
         Canvas canvas = new Canvas(bitmap);
+
+        if (color != 0) {
+            Paint paint = new Paint();
+            paint.setColor(color);
+            canvas.drawRect(0, 0, bitmap.getWidth(), bitmap.getHeight(), paint);
+        }
 
         // 平移到基画布原点&缩放到原尺寸
         canvas.translate(-frame.left, -frame.top);
