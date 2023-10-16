@@ -522,13 +522,18 @@ public class IMGImage {
         }
     }
 
-    public void onDrawImage(Canvas canvas) {
+    public void onDrawImage(Canvas canvas, int color) {
 
         // 裁剪区域
         canvas.clipRect(mClipWin.isClipping() ? mFrame : mClipFrame);
 
         // 绘制图片
-        canvas.drawBitmap(mImage, null, mFrame, null);
+        Paint paint = null;
+        if (color != 0) {
+            paint = new Paint();
+            paint.setColor(color);
+        }
+        canvas.drawBitmap(mImage, null, mFrame, paint);
 
         if (DEBUG) {
             // Clip 区域

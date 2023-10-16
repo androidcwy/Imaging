@@ -203,10 +203,10 @@ public class IMGView extends FrameLayout implements Runnable, ScaleGestureDetect
 
     @Override
     protected void onDraw(Canvas canvas) {
-        onDrawImages(canvas);
+        onDrawImages(canvas, 0);
     }
 
-    private void onDrawImages(Canvas canvas) {
+    private void onDrawImages(Canvas canvas, int color) {
         canvas.save();
 
         // clip 中心旋转
@@ -214,7 +214,7 @@ public class IMGView extends FrameLayout implements Runnable, ScaleGestureDetect
         canvas.rotate(mImage.getRotate(), clipFrame.centerX(), clipFrame.centerY());
 
         // 图片
-        mImage.onDrawImage(canvas);
+        mImage.onDrawImage(canvas, color);
 
         // 马赛克
         if (!mImage.isMosaicEmpty() || (mImage.getMode() == IMGMode.MOSAIC && !mPen.isEmpty())) {
@@ -299,17 +299,7 @@ public class IMGView extends FrameLayout implements Runnable, ScaleGestureDetect
         canvas.translate(-frame.left, -frame.top);
         canvas.scale(scale, scale, frame.left, frame.top);
 
-        if (color != 0) {
-            canvas.save();
-
-            Paint paint = new Paint();
-            paint.setColor(color);
-            canvas.drawRect(0, 0, bitmap.getWidth(), bitmap.getHeight(), paint);
-
-            canvas.restore();
-        }
-
-        onDrawImages(canvas);
+        onDrawImages(canvas, color);
 
         return bitmap;
     }
