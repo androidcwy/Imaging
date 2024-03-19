@@ -533,6 +533,9 @@ public class IMGImage {
             paint = new Paint();
             paint.setColor(color);
         }
+        if (mImage == null || mImage.isRecycled()) {
+            return;
+        }
         canvas.drawBitmap(mImage, null, mFrame, paint);
 
         if (DEBUG) {
@@ -562,6 +565,9 @@ public class IMGImage {
     }
 
     public void onDrawMosaic(Canvas canvas, int layerCount) {
+        if (mMosaicImage == null || mMosaicImage.isRecycled()) {
+            return;
+        }
         canvas.drawBitmap(mMosaicImage, null, mFrame, mMosaicPaint);
         canvas.restoreToCount(layerCount);
     }
